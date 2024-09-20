@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { SignupBonusCalculatorState } from '../context/SignupBonusCalculator/SignupBonusCalculatorState';
+import { SignupBonusCalculatorContext } from '../context/SignupBonusCalculator/SignupBonusCalculatorContext';
 
 export default function SignupBonusCalculator() {
     const {
@@ -13,7 +14,7 @@ export default function SignupBonusCalculator() {
     } = useContext(SignupBonusCalculatorContext);
 
     return (
-        <SignupBonusCalculatorState>
+        <div>
             <h1>Signup Bonus Calculator</h1>
             <label>
                 Spending Target:
@@ -34,6 +35,6 @@ export default function SignupBonusCalculator() {
             <button onClick={calculateTimeToGoal}>Calculate</button>
             <button onClick={resetContext}>Reset</button>
             <p>Time to goal: {timeToGoal} months</p>
-        </SignupBonusCalculatorState>
+       </div>
     )
 }
