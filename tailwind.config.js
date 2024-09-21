@@ -1,6 +1,8 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [],
+  content: [
+    "./src/**/*.{js,jsx,ts,tsx}",
+  ],
   theme: {
     extend: {},
   },
@@ -8,7 +10,7 @@ export default {
     require('daisyui'),
   ],
   daisyui: {
-    themes: ["light", "dark"],
+    themes: ["dark", 'light'],
   },
 }
 

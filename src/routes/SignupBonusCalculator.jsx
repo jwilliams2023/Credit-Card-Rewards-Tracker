@@ -1,8 +1,12 @@
-import React, { useState, useContext } from 'react';
-import { SignupBonusCalculatorState } from '../context/SignupBonusCalculator/SignupBonusCalculatorState';
-import { SignupBonusCalculatorContext } from '../context/SignupBonusCalculator/SignupBonusCalculatorContext';
+import React, { useContext, useEffect } from 'react';
+import { 
+    SignupBonusCalculatorProvider, 
+    SignupBonusCalculatorContext 
+    } from '../context/SignupBonusCalculatorContext';
+import NumberInputBox from '../components/NumberInputBox';
 
-export default function SignupBonusCalculator() {
+
+function SignupBonusCalculatorContent() {
     const {
         spendingTarget,
         setSpendingTarget,
@@ -12,29 +16,28 @@ export default function SignupBonusCalculator() {
         calculateTimeToGoal,
         resetContext
     } = useContext(SignupBonusCalculatorContext);
+    
+    useEffect(() => {
+        calculateTimeToGoal();
+    }, [spendingTarget, monthlySpend]);
 
     return (
-        <div>
-            <h1>Signup Bonus Calculator</h1>
-            <label>
-                Spending Target:
-                <input
-                    type="number"
-                    value={spendingTarget}
-                    onChange={(e) => setSpendingTarget(e.target.value)}
-                />
-            </label>
-            <label>
-                Monthly Spend:
-                <input
-                    type="number"
-                    value={monthlySpend}
-                    onChange={(e) => setMonthlySpend(e.target.value)}
-                />
-            </label>
-            <button onClick={calculateTimeToGoal}>Calculate</button>
-            <button onClick={resetContext}>Reset</button>
-            <p>Time to goal: {timeToGoal} months</p>
-       </div>
-    )
+        <div className='flex items-center justify-center'>
+            <div className='flex-col space-y-4'>
+                <h1 className='text-2xl font-bold mb-4'>Signup Bonus Calculator</h1>
+                <NumberInputBox label='Spending Target' value={spendingTarget} setFn={setSpendingTarget} />
+                <NumberInputBox label='Monthly Spend' value={monthlySpend} setFn={setMonthlySpend} />
+                <p>Time to goal: {timeToGoal} months</p>
+                <button className='btn' onClick={resetContext}>Reset</button>
+            </div>
+        </div>
+    );
+};
+
+export default function SignupBonusCalculator() {
+    return (
+        <SignupBonusCalculatorProvider>
+            <SignupBonusCalculatorContent />
+        </SignupBonusCalculatorProvider>
+    );
 }

@@ -1,7 +1,8 @@
-import React, { useState, useContext } from 'react';
-import { SignupBonusCalculatorContext } from './SignupBonusCalculatorContext';
+import React, { useState, createContext } from 'react';
 
-export function SignupBonusCalculatorState() {
+const SignupBonusCalculatorContext = createContext(null);
+
+function SignupBonusCalculatorProvider(props) {
     const [spendingTarget, setSpendingTarget] = useState(0);
     const [monthlySpend, setMonthlySpend] = useState(0);
     const [timeToGoal, setTimeToGoal] = useState(0);
@@ -20,7 +21,7 @@ export function SignupBonusCalculatorState() {
         };
     };
 
-    contextValues = {
+    const contextValues = {
         spendingTarget,
         setSpendingTarget,
         monthlySpend,
@@ -36,3 +37,5 @@ export function SignupBonusCalculatorState() {
         </SignupBonusCalculatorContext.Provider>
     );
 }
+
+export { SignupBonusCalculatorProvider, SignupBonusCalculatorContext };
