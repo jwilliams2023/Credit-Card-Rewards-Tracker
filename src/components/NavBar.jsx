@@ -7,10 +7,10 @@ export default function NavBar() {
         <div className="navbar bg-base-100">
 
             <div className="navbar-start">
-                <a className="btn-ghost text-xl">CC Rewards</a>
+                <a className="text-xl">CC Rewards</a>
             </div>
 
-            <div className="navbar-center hidden lg:flex">
+            <div className="navbar-center lg:flex">
                 <ul className="menu menu-horizontal px-1">
                     <li><Link to="/">Home</Link></li>
                     <li><Link to="/signupbonuscalc">Sign Up Bonus Calculator</Link></li>
