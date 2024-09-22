@@ -14,18 +14,35 @@ function SignupBonusCalculatorProvider(props) {
     }
 
     function calculateTimeToGoal() {
+        // Log the values of spendingTarget and monthlySpend to debug the issue
+        console.log("spendingTarget:", spendingTarget);
+        console.log("monthlySpend:", monthlySpend);
+
         if (monthlySpend > 0) {
-            setTimeToGoal(spendingTarget / monthlySpend);
+            // Log the result of the division before setting the state
+            console.log("Calculated timeToGoal:", spendingTarget / monthlySpend);
+            setTimeToGoal(spendingTarget / monthlySpend);  // Ensure division is correct here
         } else {
             setTimeToGoal(0);
-        };
-    };
+        }
+    }
+
+    // Log when the spending target or monthly spend is updated
+    const handleSpendingTargetChange = (value) => {
+        console.log("Setting spendingTarget to:", value);
+        setSpendingTarget(value);
+    }
+
+    const handleMonthlySpendChange = (value) => {
+        console.log("Setting monthlySpend to:", value);
+        setMonthlySpend(value);
+    }
 
     const contextValues = {
         spendingTarget,
-        setSpendingTarget,
+        setSpendingTarget: handleSpendingTargetChange,  // Use wrapper to log changes
         monthlySpend,
-        setMonthlySpend,
+        setMonthlySpend: handleMonthlySpendChange,  // Use wrapper to log changes
         timeToGoal,
         calculateTimeToGoal,
         resetContext

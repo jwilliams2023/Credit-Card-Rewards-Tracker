@@ -1,11 +1,11 @@
-import React, { useContext } from 'react';
+import React, { useContext  } from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import HomeRoute from './routes/Home';
 import SignupBonusCalculatorRoute from './routes/SignupBonusCalculator';
 import NavBar from './components/NavBar';
 import { ThemeContext } from './context/ThemeContext';
 
-export default function App() {
+export default function App({}) {
   const { theme } = useContext(ThemeContext);
   
   return (
