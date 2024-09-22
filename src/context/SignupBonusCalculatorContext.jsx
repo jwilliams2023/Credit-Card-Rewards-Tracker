@@ -6,18 +6,20 @@ function SignupBonusCalculatorProvider(props) {
     const [spendingTarget, setSpendingTarget] = useState("");
     const [monthlySpend, setMonthlySpend] = useState("");
     const [timeToGoal, setTimeToGoal] = useState(0);
+    const [monthlyProgress, setMonthlyProgress] = useState([]);
 
     function resetContext(){
-        setSpendingTarget("");
-        setMonthlySpend("");
+        setSpendingTarget('');
+        setMonthlySpend('');
         setTimeToGoal(0);
+        setMonthlyProgress([]);
     }
 
     function calculateTimeToGoal() {
         // Convert empty strings to 0 for calculation
         const target = parseFloat(spendingTarget) || 0;
         const monthly = parseFloat(monthlySpend) || 0;
-        
+
         // Log the values of spendingTarget and monthlySpend to debug the issue
         console.log("spendingTarget:", spendingTarget);
         console.log("monthlySpend:", monthlySpend);
@@ -49,7 +51,9 @@ function SignupBonusCalculatorProvider(props) {
         setMonthlySpend: handleMonthlySpendChange,  // Use wrapper to log changes
         timeToGoal,
         calculateTimeToGoal,
-        resetContext
+        resetContext,
+        monthlyProgress,
+        setMonthlyProgress
     };
 
     return (
