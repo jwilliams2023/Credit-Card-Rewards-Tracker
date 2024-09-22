@@ -13,7 +13,7 @@ A web application built with React and Vite to help users track their progress t
 
 The application is deployed on Netlify. You can access it here:
 
-**[Credit Card Rewards Tracker - Live Demo](https://ccrewards.netlify.app/signupbonuscalc)**
+**[Credit Card Rewards Tracker - Live Demo](https://ccrewards.netlify.app/)**
 
 ## Technologies Used
 
