@@ -6,7 +6,7 @@ export const RadialProgress = ({ value, label }) => {
 
   return (
     <div className="flex flex-col items-center">
-      <div className="radial-progress" style={{ "--value": progressValue }} role="progressbar" aria-valuenow={progressValue}>
+      <div className="radial-progress text-primary" style={{ "--value": progressValue }} role="progressbar" aria-valuenow={progressValue}>
         {progressValue}%
       </div>
       {label && <p>{label}</p>}
