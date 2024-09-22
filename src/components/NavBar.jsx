@@ -7,7 +7,7 @@ export default function NavBar() {
         <div className="navbar bg-base-100">
 
             <div className="navbar-start">
-                <a className="text-xl">CC Rewards</a>
+                <a className="text-xl">Credit Card Rewards</a>
             </div>
 
             <div className="navbar-center lg:flex">
