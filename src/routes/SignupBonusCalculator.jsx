@@ -65,6 +65,14 @@ function SignupBonusCalculatorContent() {
         setMonthlyProgress(progressArray);
     };
 
+    const getMonthLabel = (monthsFromNow) => {
+        const today = new Date();
+        today.setMonth(today.getMonth() + monthsFromNow); // Increment by monthsFromNow
+        const options = { month: 'short', year: 'numeric' }; // Format: "Jan 2024"
+        return today.toLocaleDateString('en-US', options);
+    };
+
+
     return (
         <div className="flex flex-col items-center justify-center p-12 space-y-8">
             <h1 className="text-5xl font-bold">Signup Bonus Calculator</h1>
@@ -101,7 +109,7 @@ function SignupBonusCalculatorContent() {
             {/* Display radial progress bars for each month */}
             <div className="flex flex-wrap justify-center space-x-4 mt-8">
                 {monthlyProgress.map((progress, index) => (
-                    <RadialProgress key={index} value={progress.toFixed(2)} label={`Month ${index + 1}`} />
+                    <RadialProgress key={index} value={progress.toFixed(2)} label={getMonthLabel(index)} />
                 ))}
             </div>
         </div>
