@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.text-gold {
+    color: gold; /* Or any other gold color you prefer */
+}

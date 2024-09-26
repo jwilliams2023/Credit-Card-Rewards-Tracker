@@ -7,12 +7,15 @@ function SignupBonusCalculatorProvider(props) {
     const [monthlySpend, setMonthlySpend] = useState("");
     const [timeToGoal, setTimeToGoal] = useState(0);
     const [monthlyProgress, setMonthlyProgress] = useState([]);
+    const [customCardName, setCustomCardName] = useState('');
+    
 
     function resetContext(){
         setSpendingTarget('');
         setMonthlySpend('');
         setTimeToGoal(0);
         setMonthlyProgress([]);
+        setCustomCardName('');
     }
 
     function calculateTimeToGoal() {
@@ -53,7 +56,9 @@ function SignupBonusCalculatorProvider(props) {
         calculateTimeToGoal,
         resetContext,
         monthlyProgress,
-        setMonthlyProgress
+        setMonthlyProgress,
+        customCardName,
+        setCustomCardName
     };
 
     return (

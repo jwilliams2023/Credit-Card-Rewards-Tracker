@@ -4,6 +4,7 @@ import NumberInputBox from '../components/NumberInputBox';
 import TextInputBox from '../components/TextInputBox';
 import { RadialProgress } from '../components/RadialProgress';
 import useDebounce from '../hooks/useDebounce';
+import DropDownBox from '../components/DropDownBox';
 
 function SignupBonusCalculatorContent() {
     const {
@@ -20,6 +21,7 @@ function SignupBonusCalculatorContent() {
 
     const [cardCount, setCardCount] = useState(1);
     const [customCardName, setCustomCardName] = useState('');
+    const [cards, setCards] = useState([]);
 
     const addCard = (card) => { // Add a card to the list
         const cardName = customCardName || `Card ${cardCount}`;
@@ -30,14 +32,30 @@ function SignupBonusCalculatorContent() {
             timeToGoal 
         };
 
-        let cards = JSON.parse(localStorage.getItem('cards')) || [];
-        cards.push(newCard);
-        localStorage.setItem('cards', JSON.stringify(cards));
-
+        let updatedCards = [...cards, newCard];
+        localStorage.setItem('cards', JSON.stringify([...cards, newCard]));
+        
+        setCards(updatedCards);
         setCardCount(cardCount + 1);
         //e.preventDefault();
         setCustomCardName('');
+        setSpendingTarget(localSpendingTarget);
+        setMonthlySpend(localMonthlySpend);
     };
+
+    useEffect(() => {
+        const storedCards = JSON.parse(localStorage.getItem('cards'));
+        if (storedCards) {
+            setCards(storedCards);
+        }
+    }, []);
+
+    const handleCardSelect = (card) => {   // Select a card from the list
+        setCustomCardName(card.cardName);
+        setSpendingTarget(card.spendingTarget);
+        setMonthlySpend(card.monthlySpend);
+        calculateTimeToGoal();
+    }
 
 
     //const [monthlyProgress, setMonthlyProgress] = useState([]);
@@ -100,59 +118,81 @@ function SignupBonusCalculatorContent() {
         <div className="flex flex-col items-center justify-center p-12 space-y-8">
             <h1 className="text-5xl font-bold">Signup Bonus Calculator</h1>
 
+            <div className="bg-base-200 p-8 rounded-lg shadow-md w-full max-w-lg space-y-6 text-center">
+                 {/* Dropdown to select a card */}
+                 <DropDownBox cards={cards} onSelectCard={handleCardSelect} />
+            </div>
             <div className="bg-base-200 p-8 rounded-lg shadow-md w-full max-w-lg space-y-6 text-left">
                 
                 {/* Input for custom card name */}
-                <TextInputBox
-                    label="Card Name"
-                    value={customCardName}
-                    onChange={(e) => setCustomCardName(e.target.value)}
-                    className="text-2x1"
-                />
+                <div className="flex flex-col">
+                    <label className="label text-lg font-semibold">Card Name</label>
+                    <TextInputBox
+                        value={customCardName}
+                        onChange={(e) => setCustomCardName(e.target.value)}
+                        className="input input-bordered text-xl w-full" // Ensuring uniform input style
+                    />
+                </div>
                 
-                <NumberInputBox
-                    label='Spending Target'
-                    value={localSpendingTarget}
-                    setFn={setLocalSpendingTarget}
-                    className="text-2xl"
-                />
+                <div className="flex flex-col">
+                    <label className="label text-lg font-semibold">Spending Target</label>
+                    <NumberInputBox
+                        value={(localSpendingTarget)}
+                        setFn={setLocalSpendingTarget}
+                        className="input input-bordered text-xl w-full" // Consistent input style
+                    />
+                </div>
                 
-                <NumberInputBox
-                    label='Monthly Spend'
-                    value={localMonthlySpend}
-                    setFn={setLocalMonthlySpend}
-                    className="text-2xl"
-                />
+                <div className="flex flex-col">
+                    <label className="label text-lg font-semibold">Monthly Spend</label>
+                    <NumberInputBox
+                        value={localMonthlySpend}
+                        setFn={setLocalMonthlySpend}
+                        className="input input-bordered text-xl w-full" // Consistent input style
+                    />
+                </div>
 
                 {/* Time to goal with increased emphasis */}
                 <p className="text-xl font-semibold mt-6">
                     <span className="mr-4">Time to goal:</span>
                     <span className="font-bold text-2xl">{timeToGoal} months</span>
                 </p>
-
-                <button className="btn btn-primary mt-4 w-full" onClick={() => {
+    
+                <button className="btn btn-primary mt-4 w-full text-xl" onClick={() => {
                     addCard({
-                        cardName: customCardName || `Card ${cardCount}`, // Use custom name or fallback to default,
+                        cardName: customCardName || `Card ${cardCount}`, 
                         spendingTarget, 
                         monthlySpend, 
-                        timeToGoal});
+                        timeToGoal
+                    });
                 }}>
                     Add Card
                 </button>
-
-                <button className="btn btn-primary mt-4 w-full" onClick={() => {
+    
+                <button className="btn btn-primary mt-4 w-full text-xl" onClick={() => {
                     resetContext();
-                    setLocalSpendingTarget(''); // Reset local state
-                    setLocalMonthlySpend('');   // Reset local state
+                    setLocalSpendingTarget(''); 
+                    setLocalMonthlySpend(''); 
+                    setCustomCardName('');  
                 }}>
                     Reset
                 </button>
             </div>
+                
+            {/* Heading for Visual Progress */}
+            <h2 className="text-2xl font-semibold mt-8">Visual Progress</h2>   
 
             {/* Display radial progress bars for each month */}
             <div className="flex flex-wrap justify-center space-x-4 mt-8">
                 {monthlyProgress.map((progress, index) => (
-                    <RadialProgress key={index} value={progress.toFixed(2)} label={getMonthLabel(index)} />
+                    <div className="bg-base-200 rounded-lg shadow-md w-1/5 m-2 p-4" key={index}> {/* Card styling */}
+                    <RadialProgress 
+                        key={index} 
+                        value={progress.toFixed(2)} 
+                        label={getMonthLabel(index)} 
+                        isComplete = { index === monthlyProgress.length - 1 }
+                    />
+                    </div>
                 ))}
             </div>
         </div>
