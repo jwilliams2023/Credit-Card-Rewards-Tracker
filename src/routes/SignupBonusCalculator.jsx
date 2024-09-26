@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { SignupBonusCalculatorProvider, SignupBonusCalculatorContext } from '../context/SignupBonusCalculatorContext';
 import NumberInputBox from '../components/NumberInputBox';
+import TextInputBox from '../components/TextInputBox';
 import { RadialProgress } from '../components/RadialProgress';
 import useDebounce from '../hooks/useDebounce';
 
@@ -16,6 +17,28 @@ function SignupBonusCalculatorContent() {
         monthlyProgress,
         setMonthlyProgress
     } = useContext(SignupBonusCalculatorContext);
+
+    const [cardCount, setCardCount] = useState(1);
+    const [customCardName, setCustomCardName] = useState('');
+
+    const addCard = (card) => { // Add a card to the list
+        const cardName = customCardName || `Card ${cardCount}`;
+        const newCard = { 
+            cardName, 
+            spendingTarget, 
+            monthlySpend, 
+            timeToGoal 
+        };
+
+        let cards = JSON.parse(localStorage.getItem('cards')) || [];
+        cards.push(newCard);
+        localStorage.setItem('cards', JSON.stringify(cards));
+
+        setCardCount(cardCount + 1);
+        //e.preventDefault();
+        setCustomCardName('');
+    };
+
 
     //const [monthlyProgress, setMonthlyProgress] = useState([]);
 
@@ -78,12 +101,22 @@ function SignupBonusCalculatorContent() {
             <h1 className="text-5xl font-bold">Signup Bonus Calculator</h1>
 
             <div className="bg-base-200 p-8 rounded-lg shadow-md w-full max-w-lg space-y-6 text-left">
+                
+                {/* Input for custom card name */}
+                <TextInputBox
+                    label="Card Name"
+                    value={customCardName}
+                    onChange={(e) => setCustomCardName(e.target.value)}
+                    className="text-2x1"
+                />
+                
                 <NumberInputBox
                     label='Spending Target'
                     value={localSpendingTarget}
                     setFn={setLocalSpendingTarget}
                     className="text-2xl"
                 />
+                
                 <NumberInputBox
                     label='Monthly Spend'
                     value={localMonthlySpend}
@@ -96,6 +129,16 @@ function SignupBonusCalculatorContent() {
                     <span className="mr-4">Time to goal:</span>
                     <span className="font-bold text-2xl">{timeToGoal} months</span>
                 </p>
+
+                <button className="btn btn-primary mt-4 w-full" onClick={() => {
+                    addCard({
+                        cardName: customCardName || `Card ${cardCount}`, // Use custom name or fallback to default,
+                        spendingTarget, 
+                        monthlySpend, 
+                        timeToGoal});
+                }}>
+                    Add Card
+                </button>
 
                 <button className="btn btn-primary mt-4 w-full" onClick={() => {
                     resetContext();
