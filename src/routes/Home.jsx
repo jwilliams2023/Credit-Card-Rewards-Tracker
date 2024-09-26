@@ -11,7 +11,7 @@ export default function Home() {
                 Currently focused on tracking sign-up bonuses, <strong>Credit Card Rewards Tracker</strong> helps users optimize their credit card spending. 
                 The tool calculates how long it will take to meet spending requirements for rewards, such as cashback, points, or miles. Future updates will include a 
                 <strong> credit score calculator</strong>, enhanced <strong>UI/UX improvements</strong>, and backend support for tracking multiple bonuses across different cards.
-            </p>
+            </p> 
 
             <div className="flex flex-col items-center space-y-6">
                 <ul className="list-disc text-left text-lg max-w-3xl space-y-3">

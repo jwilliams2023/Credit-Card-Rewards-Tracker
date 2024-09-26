@@ -184,7 +184,7 @@ function SignupBonusCalculatorContent() {
             {/* Heading for Visual Progress */}
             <h2 className="text-2xl font-semibold mt-8">Visual Progress</h2>   
 
-            {/* Display radial progress bars for each month */}
+            {/* Display radial progress radials for each month  */}
             <div className="flex flex-wrap justify-center space-x-6 mt-8">
                 {monthlyProgress.map((progress, index) => (
                     <div className="bg-base-200 rounded-lg shadow-md w-1/4 m-2 p-10" key={index}>
