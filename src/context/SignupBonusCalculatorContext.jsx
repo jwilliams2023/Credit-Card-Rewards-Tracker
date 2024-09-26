@@ -8,7 +8,7 @@ function SignupBonusCalculatorProvider(props) {
     const [timeToGoal, setTimeToGoal] = useState(0);
     const [monthlyProgress, setMonthlyProgress] = useState([]);
     const [customCardName, setCustomCardName] = useState('');
-    
+
 
     function resetContext(){
         setSpendingTarget('');
@@ -19,7 +19,7 @@ function SignupBonusCalculatorProvider(props) {
     }
 
     function calculateTimeToGoal() {
-        // Convert empty strings to 0 for calculation
+        // Convert empty strings to 0 for calculation purposes
         const target = parseFloat(spendingTarget) || 0;
         const monthly = parseFloat(monthlySpend) || 0;
 
