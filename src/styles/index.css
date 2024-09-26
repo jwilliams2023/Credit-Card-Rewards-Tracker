@@ -2,6 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-.text-gold {
-    color: gold; /* Or any other gold color you prefer */
+.text-green {
+    color: rgb(83, 232, 83); /* Or any other gold color you prefer */
 }

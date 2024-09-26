@@ -7,7 +7,7 @@ export const RadialProgress = ({ value, label, isComplete }) => {
   return (
     <div className="flex flex-col items-center">
       <div 
-         className={`radial-progress text-primary ${isComplete ? "text-gold" : "text-primary"}`} 
+         className={`radial-progress text-primary ${isComplete ? "text-green" : "text-primary"}`} 
         style={{ "--value": progressValue, "--size": "8rem", "--thickness": ".7rem" }} 
         role="progressbar" 
         aria-valuenow={progressValue}

@@ -39,8 +39,8 @@ function SignupBonusCalculatorContent() {
         setCardCount(cardCount + 1);
         //e.preventDefault();
         setCustomCardName('');
-        setSpendingTarget(localSpendingTarget);
-        setMonthlySpend(localMonthlySpend);
+        //setSpendingTarget(localSpendingTarget);
+        //setMonthlySpend(localMonthlySpend);
     };
 
     useEffect(() => {
@@ -118,10 +118,7 @@ function SignupBonusCalculatorContent() {
         <div className="flex flex-col items-center justify-center p-12 space-y-8">
             <h1 className="text-5xl font-bold">Signup Bonus Calculator</h1>
 
-            <div className="bg-base-200 p-8 rounded-lg shadow-md w-full max-w-lg space-y-6 text-center">
-                 {/* Dropdown to select a card */}
-                 <DropDownBox cards={cards} onSelectCard={handleCardSelect} />
-            </div>
+           
             <div className="bg-base-200 p-8 rounded-lg shadow-md w-full max-w-lg space-y-6 text-left">
                 
                 {/* Input for custom card name */}
@@ -179,13 +176,18 @@ function SignupBonusCalculatorContent() {
                 </button>
             </div>
                 
+            <div className="bg-base-200 p-8 rounded-lg shadow-md w-full max-w-lg space-y-6 text-center">
+                 {/* Dropdown to select a card */}
+                 <DropDownBox cards={cards} onSelectCard={handleCardSelect} />
+            </div> 
+
             {/* Heading for Visual Progress */}
             <h2 className="text-2xl font-semibold mt-8">Visual Progress</h2>   
 
             {/* Display radial progress bars for each month */}
-            <div className="flex flex-wrap justify-center space-x-4 mt-8">
+            <div className="flex flex-wrap justify-center space-x-6 mt-8">
                 {monthlyProgress.map((progress, index) => (
-                    <div className="bg-base-200 rounded-lg shadow-md w-1/5 m-2 p-4" key={index}> {/* Card styling */}
+                    <div className="bg-base-200 rounded-lg shadow-md w-1/4 m-2 p-10" key={index}>
                     <RadialProgress 
                         key={index} 
                         value={progress.toFixed(2)} 
