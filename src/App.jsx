@@ -1,6 +1,6 @@
 import React, { useContext  } from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
-import HomeRoute from './routes/Home';
+import AboutRoute from './routes/About';
 import SignupBonusCalculatorRoute from './routes/SignupBonusCalculator';
 import NavBar from './components/NavBar';
 import { ThemeContext } from './context/ThemeContext';
@@ -13,7 +13,7 @@ export default function App({}) {
       <Router>
         <NavBar />
         <Routes>
-          <Route path="/" element={<HomeRoute />} />
+          <Route path="/" element={<AboutRoute />} />
           <Route path="/signupbonuscalc" element={<SignupBonusCalculatorRoute />} />
         </Routes>
       </Router>

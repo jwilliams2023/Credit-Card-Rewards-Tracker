@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Home() {
+export default function About() {
     return (
         <div className="flex flex-col items-center justify-center p-12 space-y-10">
             <h1 className="text-5xl font-bold text-center">
