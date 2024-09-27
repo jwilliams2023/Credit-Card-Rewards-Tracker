@@ -14,7 +14,7 @@ const DropDownBox = ({ cards, onSelectCard}) => {
                     <path d="M1799 349l242 241-1017 1017L7 590l242-241 775 775 775-775z"></path>
                 </svg>
             </div>
-            <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
+            <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-[1] w-full p-2 shadow">
                 {cards.length > 0 ? (
                     cards.map((card, index) => (
                         <li key={index} onClick={() => onSelectCard(card)}>

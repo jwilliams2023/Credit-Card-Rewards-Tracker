@@ -187,7 +187,7 @@ function SignupBonusCalculatorContent() {
             {/* Display radial progress radials for each month  */}
             <div className="flex flex-wrap justify-center space-x-6 mt-8">
                 {monthlyProgress.map((progress, index) => (
-                    <div className="bg-base-200 rounded-lg shadow-md w-1/4 m-2 p-10" key={index}>
+                    <div className="bg-base-200 rounded-lg shadow-md w-1/3 m-2 p-8" key={index}>
                     <RadialProgress 
                         key={index} 
                         value={progress.toFixed(2)} 
@@ -195,7 +195,7 @@ function SignupBonusCalculatorContent() {
                         isComplete = { index === monthlyProgress.length - 1 }
                     />
                     </div>
-                ))}
+                ))}         
             </div>
         </div>
     );
