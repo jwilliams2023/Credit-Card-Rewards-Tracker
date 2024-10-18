@@ -121,7 +121,7 @@ function SignupBonusCalculatorContent() {
             <h1 className="text-5xl font-bold">Signup Bonus Calculator</h1>
 
            
-            <div className="bg-base-200 p-8 rounded-lg shadow-md w-full max-w-lg space-y-6 text-left">
+            <div className="bg-base-300 p-8 rounded-lg shadow-md w-full max-w-lg space-y-6 text-left">
                 
                 {/* Input for custom card name */}
                 <div className="flex flex-col">
@@ -180,11 +180,11 @@ function SignupBonusCalculatorContent() {
                     setLocalMonthlySpend(''); 
                     setCustomCardName('');  
                 }}>
-                    Reset
+                    Reset Values
                 </button>
             </div>
                 
-            <div className="bg-base-200 p-8 rounded-lg shadow-md w-full max-w-lg space-y-6 text-center">
+            <div className="bg-base-300 p-8 rounded-lg shadow-md w-full max-w-lg space-y-6 text-center">
                  {/* Dropdown to select a card */}
                  <DropDownBox cards={cards} onSelectCard={handleCardSelect} />
             </div> 
@@ -195,11 +195,11 @@ function SignupBonusCalculatorContent() {
             {/* Display radial progress radials for each month  */}
             <div className="flex flex-wrap justify-center mt-8">
                 {monthlyProgress.map((progress, index) => (
-                    <div className="bg-base-200 rounded-lg shadow-md w-1/3 m-2 p-8" key={index}>
+                    <div className="progress-container bg-base-200 rounded-lg shadow-md w-1/3 m-2 p-8 flex flex-col items-center justify-between" key={index}>
                     <RadialProgress 
                         key={index} 
                         value={progress.toFixed(2)} 
-                        label={getMonthLabel(index)} 
+                        label={getMonthLabel(index)}
                         isComplete = { index === monthlyProgress.length - 1 }
                     />
                     </div>

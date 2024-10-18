@@ -4,10 +4,10 @@ import { ThemeContext } from '../context/ThemeContext';
 
 export default function NavBar() {
   return (
-        <div className="navbar bg-base-100">
+        <div className="navbar bg-base-100 rounded-box">
 
             <div className="navbar-start">
-                <a className="text-xl">Credit Card Rewards</a>
+                <Link to="/" className="btn btn-ghost text-xl">Credit Card Rewards</Link>
             </div>
 
             <div className="navbar-center lg:flex">

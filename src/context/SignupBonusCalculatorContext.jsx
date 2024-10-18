@@ -30,7 +30,7 @@ function SignupBonusCalculatorProvider(props) {
         if (monthlySpend > 0) {
             // Log the result of the division before setting the state
             console.log("Calculated timeToGoal:", spendingTarget / monthlySpend);
-            setTimeToGoal((spendingTarget / monthlySpend).toFixed(1));  // Ensure division is correct here
+            setTimeToGoal((spendingTarget / monthlySpend).toFixed(2));  // Ensure division is correct here 
         } else {
             setTimeToGoal(0);
         }
