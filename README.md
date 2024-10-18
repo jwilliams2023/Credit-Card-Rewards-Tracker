@@ -1,10 +1,12 @@
 # Credit Card Rewards Tracker
 
-A web application built with React and firebase to help users track their progress towards meeting credit card goals. Users can input their spending target and monthly spend to visualize how long it will take to reach the target along with interactive radial progress bars.
+A web application built with React to help users track their progress towards meeting credit card goals. Users can input their spending target and monthly spend to visualize how long it will take to reach the target along with interactive radial progress bars.
 
 ## Features
 
 - **Radial Progress Bars**: Visualize monthly progress towards reaching the credit card signup bonus.
+- **Conditional Progress Display**: The "Visual Progress" heading and radial progress bars only appear after all inputs are filled.
+- **Hover Button for Saved Cards**: The "Saved Cards" button is now a hover button located within the calculator section.
 - **Last Month Highlight**: The final month of progress is highlighted in green to indicate completion.
 - **Dark Mode Toggle**: Switch between light and dark themes for a better user experience.
 - **Real-Time Calculation**: Automatically updates the time required to reach the goal based on spending target and monthly spend.
@@ -20,11 +22,7 @@ The application is deployed on Netlify. You can access it here:
 
 - **Vite**: For fast, modern development and build tooling.
 - **React**: Used for building dynamic user interfaces and managing state.
-- **Firebase**: Used to handle backend database functionalities, user authentication through OAuth, and data management using document-based Firestore.
 - **Tailwind CSS + DaisyUI**: For responsive, customizable styling.
-
-### Firebase Documentation
-- Learn more about Firebase and its services: [Firebase Docs](https://firebase.google.com/docs)
 
 ## Getting Started
 
@@ -60,27 +58,32 @@ The application is deployed on Netlify. You can access it here:
 
 ## How to Use
 
-1. Input your **Spending Target**
-2. Input your **Monthly Spend**
+1. Input your **Spending Target**.
+2. Input your **Monthly Spend**.
 3. The application will calculate how long it will take to reach your goal and display progress for each month in radial progress bars.
 4. Toggle between **Dark Mode** and **Light Mode** for a customized user experience.
 5. Add new cards to track multiple bonuses.
+6. Use the **Saved Cards** hover button to select previously saved credit card goals.
 
 ## In Progress
 
 - **Credit Score Calculation**: Adding a feature to allow users to calculate and track their credit score as part of their financial planning.
 - **UI/UX Improvements**: Enhancing the overall user interface to make navigation and user experience smoother and more intuitive.
-- 
+
+## Backlog
+
+- **Alignment Fixes**: Addressing alignment issues between labels and input boxes to ensure consistent layout.
+- **Card Input Enhancements**: Improve how card names are handled when adding cards, including validation to prevent empty card names.
 
 ## Future Features
 
-- **Simple Backend Database**: Implementing a persistent backend database using Firebase Firestore to store and track active signup bonuses across multiple credit cards. This will allow users to keep track of their progress over time, rather than relying solely on local storage. Additionally, user authentication through Google OAuth will enable secure access to user data.
+- **Persistent Backend Database**: Implementing a persistent backend database using SQLite/MySQL to store and track active signup bonuses across multiple credit cards. This will allow users to keep track of their progress over time, rather than relying solely on local storage.
+- **User Authentication**: Adding user authentication through Google OAuth to enable secure access to user data and make card data more permanent.
 
 ## Documentation
 
 - Vite documentation: [Vite Docs](https://vitejs.dev/guide/)
 - React documentation: [React Docs](https://reactjs.org/docs/getting-started.html)
-- Firebase documentation: [Firebase Docs](https://firebase.google.com/docs)
 - Tailwind CSS + DaisyUI documentation: [DaisyUI Docs](https://daisyui.com/)
 
 ## License
