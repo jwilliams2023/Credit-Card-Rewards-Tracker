@@ -54,6 +54,8 @@ function SignupBonusCalculatorContent() {
         setCustomCardName(card.cardName);
         setSpendingTarget(card.spendingTarget);
         setMonthlySpend(card.monthlySpend);
+        setLocalMonthlySpend(card.monthlySpend); // actually needed to update values shown in the input boxes since local controls the popolation of the input boxes
+        setLocalSpendingTarget(card.spendingTarget);
         calculateTimeToGoal();
     }
 
@@ -130,7 +132,7 @@ function SignupBonusCalculatorContent() {
                         className="input input-bordered text-xl w-full" // Ensuring uniform input style
                     />
                 </div>
-                
+                {/* Spending target input */}
                 <div className="flex flex-col">
                     <label className="label text-lg font-semibold">Spending Target</label>
                     <NumberInputBox
@@ -139,7 +141,7 @@ function SignupBonusCalculatorContent() {
                         className="input input-bordered text-xl w-full" // Consistent input style
                     />
                 </div>
-                
+                {/* Monthly spend input */}
                 <div className="flex flex-col">
                     <label className="label text-lg font-semibold">Monthly Spend</label>
                     <NumberInputBox
@@ -149,12 +151,18 @@ function SignupBonusCalculatorContent() {
                     />
                 </div>
 
-                {/* Time to goal with increased emphasis */}
+                {/* Time to goal */}
                 <p className="text-xl font-semibold mt-6">
                     <span className="mr-4">Time to goal:</span>
-                    <span className="font-bold text-2xl">{timeToGoal} months</span>
+                    {spendingTarget > 0 && monthlySpend > 0 ? (
+                        <span className="font-bold text-2xl"> {timeToGoal} {timeToGoal < 2 ? 'month' : 'months'}
+                        </span>
+                    ) : (
+                        <span className="font-bold text-2xl"></span>
+                    )}
                 </p>
-    
+
+                {/* Add card button */}
                 <button className="btn btn-primary mt-4 w-full text-xl" onClick={() => {
                     addCard({
                         cardName: customCardName || `Card ${cardCount}`, 
@@ -165,7 +173,7 @@ function SignupBonusCalculatorContent() {
                 }}>
                     Add Card
                 </button>
-    
+                {/* Reset button */}
                 <button className="btn btn-primary mt-4 w-full text-xl" onClick={() => {
                     resetContext();
                     setLocalSpendingTarget(''); 
@@ -185,7 +193,7 @@ function SignupBonusCalculatorContent() {
             <h2 className="text-2xl font-semibold mt-8">Visual Progress</h2>   
 
             {/* Display radial progress radials for each month  */}
-            <div className="flex flex-wrap justify-center space-x-6 mt-8">
+            <div className="flex flex-wrap justify-center mt-8">
                 {monthlyProgress.map((progress, index) => (
                     <div className="bg-base-200 rounded-lg shadow-md w-1/3 m-2 p-8" key={index}>
                     <RadialProgress 
