@@ -118,14 +118,14 @@ function SignupBonusCalculatorContent() {
 
     return (
         <div className="flex flex-col items-center justify-center p-12 space-y-8">
-            <h1 className="text-5xl font-bold">Signup Bonus Calculator</h1>
+            <h1 className="text-3xl font-bold">Signup Bonus Calculator</h1>
 
            
             <div className="bg-base-300 p-8 rounded-lg shadow-md w-full max-w-lg space-y-6 text-left">
                 
                 {/* Input for custom card name */}
                 <div className="flex flex-col">
-                    <label className="label text-lg font-semibold">Card Name</label>
+                    <label className="label text-sm font-semibold">Card Name</label>
                     <TextInputBox
                         value={customCardName}
                         onChange={(e) => setCustomCardName(e.target.value)}
@@ -134,7 +134,7 @@ function SignupBonusCalculatorContent() {
                 </div>
                 {/* Spending target input */}
                 <div className="flex flex-col">
-                    <label className="label text-lg font-semibold">Spending Target</label>
+                    <label className="label text-sm font-semibold">Spending Target</label>
                     <NumberInputBox
                         value={(localSpendingTarget)}
                         setFn={setLocalSpendingTarget}
@@ -143,22 +143,22 @@ function SignupBonusCalculatorContent() {
                 </div>
                 {/* Monthly spend input */}
                 <div className="flex flex-col">
-                    <label className="label text-lg font-semibold">Monthly Spend</label>
+                    <label className="label text-sm font-semibold">Monthly Spend</label>
                     <NumberInputBox
                         value={localMonthlySpend}
                         setFn={setLocalMonthlySpend}
-                        className="input input-bordered text-xl w-full" // Consistent input style
+                        className="input input-bordered text-xl" // Consistent input style
                     />
                 </div>
 
                 {/* Time to goal */}
-                <p className="text-xl font-semibold mt-6">
+                <p className="text-sm font-semibold mt-6">
                     <span className="mr-4">Time to goal:</span>
                     {spendingTarget > 0 && monthlySpend > 0 ? (
-                        <span className="font-bold text-2xl"> {timeToGoal} {timeToGoal < 2 ? 'month' : 'months'}
+                        <span className="font-bold text-3xl"> {timeToGoal} {timeToGoal < 2 ? 'month' : 'months'}
                         </span>
                     ) : (
-                        <span className="font-bold text-2xl"></span>
+                        <span className="font-bold text-xl">---</span>
                     )}
                 </p>
 
@@ -182,15 +182,16 @@ function SignupBonusCalculatorContent() {
                 }}>
                     Reset Values
                 </button>
-            </div>
-                
-            <div className="bg-base-300 p-8 rounded-lg shadow-md w-full max-w-lg space-y-6 text-center">
-                 {/* Dropdown to select a card */}
-                 <DropDownBox cards={cards} onSelectCard={handleCardSelect} />
-            </div> 
 
+                {/* Dropdown button for saved cards */}
+                <DropDownBox cards={cards} onSelectCard={handleCardSelect} />
+
+            </div>
+            
             {/* Heading for Visual Progress */}
-            <h2 className="text-2xl font-semibold mt-8">Visual Progress</h2>   
+            {spendingTarget > 0 && monthlySpend > 0 && timeToGoal > 0 && (
+                <>
+            <h2 className="text-3xl font-semibold mt-8">Visual Progress</h2>   
 
             {/* Display radial progress radials for each month  */}
             <div className="flex flex-wrap justify-center mt-8">
@@ -205,6 +206,8 @@ function SignupBonusCalculatorContent() {
                     </div>
                 ))}         
             </div>
+            </>
+            )}
         </div>
     );
 }

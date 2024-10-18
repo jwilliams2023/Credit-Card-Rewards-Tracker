@@ -2,7 +2,7 @@ import React from 'react';
 
 const DropDownBox = ({ cards, onSelectCard}) => {
     return (
-        <div className="dropdown dropdown-right mb-4"> {/* Added margin bottom for spacing */}
+        <div className="dropdown dropdown-hover mb-4"> {/* Added margin bottom for spacing */}
             <div tabIndex={0} role="button" className="btn btn-primary m-1 flex items-center"> {/* Flex to align items */}
                 Saved Cards
                 <svg

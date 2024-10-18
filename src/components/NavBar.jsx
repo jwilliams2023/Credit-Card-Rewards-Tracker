@@ -7,7 +7,7 @@ export default function NavBar() {
         <div className="navbar bg-base-100 rounded-box">
 
             <div className="navbar-start">
-                <Link to="/" className="btn btn-ghost text-xl">Credit Card Rewards</Link>
+                <Link to="/" className="btn btn-ghost text-xl">Credit Card Rewards</Link> {/* linked to about page for now */}
             </div>
 
             <div className="navbar-center lg:flex">
