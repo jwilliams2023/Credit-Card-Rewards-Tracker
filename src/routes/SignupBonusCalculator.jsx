@@ -156,18 +156,21 @@ function SignupBonusCalculatorContent() {
                 </p>
 
                 {/* Add card, Reset, and Dropdown buttons on the same row, properly contained within the card */}
-                <div className="flex justify-between items-stretch mt-4 space-x-2 w-full">
-                    <button className="btn btn-primary flex-1 text-lg" onClick={() => {
-                        addCard({
-                            cardName: customCardName || `Card ${cardCount}`,
-                            spendingTarget,
-                            monthlySpend,
-                            timeToGoal
-                        });
-                    }}>
+                <div className="flex justify-between items-stretch mt-4 space-x-2 w-full ">
+                    <button className="btn btn-primary flex-1 text-md md:text-lg px-3 " 
+                            //style= {{height: '3rem'}}
+                            onClick={() => {
+                                addCard({
+                                    cardName: customCardName || `Card ${cardCount}`,
+                                    spendingTarget,
+                                    monthlySpend,
+                                    timeToGoal,
+                                });
+                        }}
+                    >
                         Add Card
                     </button>
-                    <button className="btn btn-primary flex-1 text-lg" onClick={() => {
+                    <button className="btn btn-primary flex-1 text-md md:text-lg" onClick={() => {
                         resetContext();
                         setLocalSpendingTarget(''); 
                         setLocalMonthlySpend(''); 
@@ -182,7 +185,7 @@ function SignupBonusCalculatorContent() {
                         buttonLabel="Saved Cards"
                         dropdownItems={cards.map((card) => ({ label: card.cardName, value: card }))}
                         onItemSelect={(item) => handleCardSelect(item.value)}
-                        className="btn btn-primary flex-1 text-lg"
+                        className="btn btn-primary flex-1"
                     />
                     </div>
                 </div>

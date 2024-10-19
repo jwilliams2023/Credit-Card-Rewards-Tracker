@@ -16,7 +16,7 @@ const DropDownBox = ({ buttonLabel = "Dropdown", dropdownItems = [], onItemSelec
         <div className="dropdown dropdown-hover mb-4 relative">
             <button
                 onClick={toggleDropdown}
-                className="btn btn-primary m-1 flex items-center text-lg"
+                className="btn btn-primary m-1 flex items-center text-md md:text-lg"
             >
                 {buttonLabel}
                 <svg
