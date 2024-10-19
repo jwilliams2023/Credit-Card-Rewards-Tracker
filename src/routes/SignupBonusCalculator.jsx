@@ -114,7 +114,7 @@ function SignupBonusCalculatorContent() {
 
     return (
         <div className="flex flex-col items-center justify-center p-12 space-y-8">
-            <h1 className="text-2xl font-bold ">Sign Up Bonus Calculator</h1>
+            <h1 className="text-xl font-bold ">Sign Up Bonus Calculator</h1>
 
             <div className="bg-base-300 p-8 rounded-lg shadow-md w-full max-w-lg space-y-6 text-left">
                 {/* Input for custom card name */}
@@ -156,7 +156,7 @@ function SignupBonusCalculatorContent() {
                 </p>
 
                 {/* Add card button */}
-                <button className="btn btn-primary mt-4 w-full text-xl" onClick={() => {
+                <button className="btn btn-primary mt-4 w-full text-lg" onClick={() => {
                     addCard({
                         cardName: customCardName || `Card ${cardCount}`,
                         spendingTarget,
@@ -167,7 +167,7 @@ function SignupBonusCalculatorContent() {
                     Add Card
                 </button>
                 {/* Reset button */}
-                <button className="btn btn-primary mt-4 w-full text-xl" onClick={() => {
+                <button className="btn btn-primary mt-4 w-full text-lg" onClick={() => {
                     resetContext();
                     setLocalSpendingTarget(''); 
                     setLocalMonthlySpend(''); 
@@ -187,7 +187,7 @@ function SignupBonusCalculatorContent() {
             {/* Heading for Visual Progress */}
             {spendingTarget > 0 && monthlySpend > 0 && timeToGoal > 0 && (
                 <>
-                    <h2 className="text-2xl font-bold">Visual Progress</h2>
+                    <h2 className="text-xl font-bold">Visual Progress</h2>
                     {/* Display radial progress radials for each month */}
                     <div className="flex flex-wrap justify-center mt-8">
                         {monthlyProgress.map((progress, index) => (
