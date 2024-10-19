@@ -1,8 +1,12 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { ThemeContext } from '../context/ThemeContext';
+import { useIsMobile } from '../utils/screenUtils';
+import MobileThemeToggle from './mobile/MobileThemeToggle';
 
 export default function NavBar() {
+
+    const isMobile = useIsMobile(); // Check if the screen is mobile from utlis/screenUtils.js
 
     const closeDropdown = () => {
         const dropdown = document.activeElement;
@@ -10,7 +14,7 @@ export default function NavBar() {
     };
 
     return (
-        <div className="navbar bg-base-100 text-base-content bg-opacity-90 backdrop-blur duration-100 [transform:translate3d(0,0,0)] rounded-box shadow-sm fixed top-0 left-0 w-full z-50">
+        <div className="navbar bg-base-100 text-base-content bg-opacity-70 backdrop-blur duration-100 [transform:translate3d(0,0,0)] rounded-box shadow-sm fixed top-0 left-0 w-full z-50">
             {/* Start - Hamburger Menu, always visible */}
             <div className="navbar-start">
                 <div className="dropdown">
@@ -44,7 +48,7 @@ export default function NavBar() {
 
             {/* End - Theme Toggle */}
             <div className="navbar-end">
-                <ThemeToggle />
+                {isMobile ? <MobileThemeToggle/> : <ThemeToggle />}
             </div>
         </div>
     );
@@ -58,6 +62,7 @@ export function ThemeToggle() {
     }
 
     return (
+        
         <label className="flex cursor-pointer gap-2 items-center px-4">
             <svg
                 xmlns="http://www.w3.org/2000/svg"

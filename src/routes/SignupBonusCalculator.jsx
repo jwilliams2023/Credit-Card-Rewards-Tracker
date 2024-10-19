@@ -194,7 +194,7 @@ function SignupBonusCalculatorContent() {
             {/* Heading for Visual Progress */}
             {spendingTarget > 0 && monthlySpend > 0 && timeToGoal > 0 && (
                 <>
-                    <h2 className="text-xl font-bold">Visual Progress</h2>
+                    <h2 className="md:text-xl text-lg font-bold">Visual Progress</h2>
                     {/* Display radial progress radials for each month */}
                     <div className="flex flex-wrap justify-center mt-8">
                         {monthlyProgress.map((progress, index) => (
