@@ -32,7 +32,7 @@ const DropDownBox = ({ buttonLabel = "Dropdown", dropdownItems = [], onItemSelec
             {isDropdownOpen && (
                 <ul
                     tabIndex={0}
-                    className="dropdown-content menu bg-base-300 rounded-box shadow-md p-3 z-[1] w-64 mt-4"
+                    className="dropdown-content menu bg-base-300 rounded-box shadow-md p-3 z-[1] w-64 mt-4 "
                 >
                     {dropdownItems.length > 0 ? (
                         dropdownItems.map((item, index) => (
