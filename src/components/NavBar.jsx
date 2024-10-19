@@ -1,29 +1,28 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { ThemeContext } from '../context/ThemeContext';
+import DropDownBox from '../components/DropDownBox';  // Importing the reusable dropdown component
 
 export default function NavBar() {
+    // Define the menu items for the dropdown in the navbar
+    const menuItems = [
+        { label: 'Sign Up Bonus Calculator', link: '/signupbonuscalc' },
+        { label: 'About', link: '/' }
+    ];
+
+    const handleMenuItemSelect = (item) => {
+        window.location.href = item.link; // Redirect to the selected link
+    };
+
     return (
-        <div className="navbar bg-base-100 rounded-box">
+        <div className="navbar bg-base-100 rounded-box shadow">
             {/* Start - Hamburger Menu, always visible */}
             <div className="navbar-start">
-                <div className="dropdown">
-                    <label tabIndex={0} className="btn btn-square btn-ghost">
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            className="inline-block h-5 w-5 stroke-current">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                        </svg>
-                    </label>
-                    <ul
-                        tabIndex={0}
-                        className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52 mt-4">
-                        <li><Link to="/signupbonuscalc">Sign Up Bonus Calculator</Link></li>
-                        <li><Link to="/">About</Link></li>
-                    </ul>
-                </div>
+                <DropDownBox
+                    buttonLabel="☰"
+                    dropdownItems={menuItems}
+                    onItemSelect={handleMenuItemSelect}
+                />
             </div>
 
             {/* Center - Always show title/logo */}

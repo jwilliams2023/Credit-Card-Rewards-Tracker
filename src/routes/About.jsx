@@ -3,11 +3,11 @@ import React from 'react';
 export default function About() {
     return (
         <div className="flex flex-col items-center justify-center p-12 space-y-10">
-            <h1 className="text-5xl font-bold text-center">
+            <h1 className="text-2xl font-bold text-center">
                 Welcome to Credit Card Rewards Tracker
             </h1>
             
-            <p className="text-xl text-center max-w-3xl leading-relaxed">
+            <p className="text-lg text-center max-w-3xl leading-relaxed">
                 Currently focused on tracking sign-up bonuses, <strong>Credit Card Rewards Tracker</strong> helps users optimize their credit card spending. 
                 The tool calculates how long it will take to meet spending requirements for rewards, such as cashback, points, or miles. Future updates will include a 
                 <strong> credit score calculator</strong>, enhanced <strong>UI/UX improvements</strong>, and backend support for tracking multiple bonuses across different cards.
@@ -26,8 +26,8 @@ export default function About() {
                     </li>
                 </ul>
 
-                <button className="btn btn-primary mt-8" onClick={() => window.location.href='/signupbonuscalc'}>
-                    Get Started with the Sign Up Bonus Calculator
+                <button className="btn btn-primary mt-8 text-xl" onClick={() => window.location.href='/signupbonuscalc'}>
+                    Try out the Sign Up Bonus Calculator
                 </button>
             </div>
         </div>
