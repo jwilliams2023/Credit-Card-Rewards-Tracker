@@ -13,7 +13,7 @@ function SignupBonusCalculatorProvider(props) {
     function resetContext(){
         setSpendingTarget('');
         setMonthlySpend('');
-        setTimeToGoal(0);
+        setTimeToGoal(undefined);
         setMonthlyProgress([]);
         setCustomCardName('');
     }
@@ -27,12 +27,13 @@ function SignupBonusCalculatorProvider(props) {
         console.log("spendingTarget:", spendingTarget);
         console.log("monthlySpend:", monthlySpend);
 
-        if (monthlySpend > 0) {
+        if (monthly > 0 && target > 0) {
             // Log the result of the division before setting the state
-            console.log("Calculated timeToGoal:", spendingTarget / monthlySpend);
-            setTimeToGoal((spendingTarget / monthlySpend).toFixed(2));  // Ensure division is correct here 
+            console.log("Calculated timeToGoal:", target / monthly);
+            const calculatedTime = target / monthly;
+            setTimeToGoal(calculatedTime);  // Ensure division is correct here 
         } else {
-            setTimeToGoal(0);
+            setTimeToGoal(undefined);
         }
     }
 

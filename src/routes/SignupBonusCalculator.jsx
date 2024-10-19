@@ -24,18 +24,18 @@ function SignupBonusCalculatorContent() {
     const [customCardName, setCustomCardName] = useState('');
     const [cards, setCards] = useState([]);
 
-    const addCard = (card) => { // Add a card to the list
+    const addCard = (card) => {
         const cardName = customCardName || `Card ${cardCount}`;
-        const newCard = { 
-            cardName, 
-            spendingTarget, 
-            monthlySpend, 
-            timeToGoal 
+        const newCard = {
+            cardName,
+            spendingTarget,
+            monthlySpend,
+            timeToGoal : Number(timeToGoal) || 0,
         };
 
         let updatedCards = [...cards, newCard];
         localStorage.setItem('cards', JSON.stringify(updatedCards));
-        
+
         setCards(updatedCards);
         setCardCount(cardCount + 1);
         setCustomCardName('');
@@ -48,7 +48,7 @@ function SignupBonusCalculatorContent() {
         }
     }, []);
 
-    const handleCardSelect = (card) => {   // Select a card from the list
+    const handleCardSelect = (card) => {
         setCustomCardName(card.cardName);
         setSpendingTarget(card.spendingTarget);
         setMonthlySpend(card.monthlySpend);
@@ -65,13 +65,13 @@ function SignupBonusCalculatorContent() {
     const debouncedSpendingTarget = useDebounce(localSpendingTarget, 300);
     const debouncedMonthlySpend = useDebounce(localMonthlySpend, 300);
 
-    // Trigger calculations after debounced values are ready
     useEffect(() => {
         if (debouncedSpendingTarget > 0 && debouncedMonthlySpend > 0) {
             setSpendingTarget(debouncedSpendingTarget);
             setMonthlySpend(debouncedMonthlySpend);
+            calculateTimeToGoal();
         } else {
-            setTimeToGoal(undefined);
+            setTimeToGoal(0);
         }
     }, [debouncedSpendingTarget, debouncedMonthlySpend]);
 
@@ -148,40 +148,44 @@ function SignupBonusCalculatorContent() {
                 {/* Time to goal */}
                 <p className="text-sm font-semibold mt-6">
                     <span className="mr-4">Time to goal:</span>
-                    {spendingTarget > 0 && monthlySpend > 0 && timeToGoal > 0 ? (
-                        <span className="font-bold text-xl"> {timeToGoal} {timeToGoal < 2 ? 'month' : 'months'}</span>
+                    {spendingTarget > 0 && monthlySpend > 0 && !isNaN(Number(timeToGoal)) && Number(timeToGoal) > 0 ? (
+                        <span className="font-bold text-xl"> {timeToGoal.toFixed(2)} {timeToGoal < 2 ? 'month' : 'months'}</span>
                     ) : (
                         <span className="font-bold text-2xl">---</span>
                     )}
                 </p>
 
-                {/* Add card button */}
-                <button className="btn btn-primary mt-4 w-full text-lg" onClick={() => {
-                    addCard({
-                        cardName: customCardName || `Card ${cardCount}`,
-                        spendingTarget,
-                        monthlySpend,
-                        timeToGoal
-                    });
-                }}>
-                    Add Card
-                </button>
-                {/* Reset button */}
-                <button className="btn btn-primary mt-4 w-full text-lg" onClick={() => {
-                    resetContext();
-                    setLocalSpendingTarget(''); 
-                    setLocalMonthlySpend(''); 
-                    setCustomCardName('');  
-                }}>
-                    Reset Values
-                </button>
+                {/* Add card, Reset, and Dropdown buttons on the same row, properly contained within the card */}
+                <div className="flex justify-between items-stretch mt-4 space-x-2 w-full">
+                    <button className="btn btn-primary flex-1 text-lg" onClick={() => {
+                        addCard({
+                            cardName: customCardName || `Card ${cardCount}`,
+                            spendingTarget,
+                            monthlySpend,
+                            timeToGoal
+                        });
+                    }}>
+                        Add Card
+                    </button>
+                    <button className="btn btn-primary flex-1 text-lg" onClick={() => {
+                        resetContext();
+                        setLocalSpendingTarget(''); 
+                        setLocalMonthlySpend(''); 
+                        setCustomCardName('');  
+                    }}>
+                        Reset
+                    </button>
 
-                {/* Dropdown button for saved cards */}
-                <DropDownBox
-                    buttonLabel="Saved Cards"
-                    dropdownItems={cards.map((card) => ({ label: card.cardName, value: card }))}
-                    onItemSelect={(item) => handleCardSelect(item.value)}
-                />
+                    {/* Dropdown button for saved cards */}
+                    <div className="mt-[-4px]">
+                    <DropDownBox
+                        buttonLabel="Saved Cards"
+                        dropdownItems={cards.map((card) => ({ label: card.cardName, value: card }))}
+                        onItemSelect={(item) => handleCardSelect(item.value)}
+                        className="btn btn-primary flex-1 text-lg"
+                    />
+                    </div>
+                </div>
             </div>
 
             {/* Heading for Visual Progress */}

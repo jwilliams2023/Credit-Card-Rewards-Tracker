@@ -27,7 +27,7 @@ export default function About() {
                 </ul>
 
                 <button className="btn btn-primary mt-8 text-lg" onClick={() => window.location.href='/signupbonuscalc'}>
-                    Try out the Sign Up Bonus Calculator
+                    Try out the Credit Card Bonus Calculator
                 </button>
             </div>
         </div>
