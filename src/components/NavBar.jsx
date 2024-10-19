@@ -10,7 +10,7 @@ export default function NavBar() {
     };
 
     return (
-        <div className="navbar bg-base-100 text-base-content bg-opacity-70 backdrop-blur duration-100 [transform:translate3d(0,0,0)] rounded-box shadow-sm fixed top-0 left-0 w-full z-50">
+        <div className="navbar bg-base-100 text-base-content bg-opacity-90 backdrop-blur duration-100 [transform:translate3d(0,0,0)] rounded-box shadow-sm fixed top-0 left-0 w-full z-50">
             {/* Start - Hamburger Menu, always visible */}
             <div className="navbar-start">
                 <div className="dropdown">
