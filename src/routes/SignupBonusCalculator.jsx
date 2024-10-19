@@ -114,7 +114,7 @@ function SignupBonusCalculatorContent() {
 
     return (
         <div className="flex flex-col items-center justify-center p-12 space-y-8">
-            <h1 className="text-xl font-bold ">Sign Up Bonus Calculator</h1>
+            <h1 className="md:text-xl text-lg font-bold ">Sign Up Bonus Calculator</h1>
 
             <div className="bg-base-300 p-8 rounded-lg shadow-md w-full max-w-lg space-y-6 text-left">
                 {/* Input for custom card name */}

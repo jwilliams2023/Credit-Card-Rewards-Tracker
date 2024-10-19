@@ -3,7 +3,7 @@ import React from 'react';
 export default function About() {
     return (
         <div className="flex flex-col items-center justify-center p-12 space-y-10">
-            <h1 className="text-xl font-bold text-center">
+            <h1 className="md:text-xl text-lg font-bold text-center">
                 Welcome to Credit Card Rewards Tracker
             </h1>
             
@@ -26,7 +26,7 @@ export default function About() {
                     </li>
                 </ul>
 
-                <button className="btn btn-primary mt-8 text-lg" onClick={() => window.location.href='/signupbonuscalc'}>
+                <button className="btn btn-primary mt-8 md:text-lg text-md" onClick={() => window.location.href='/signupbonuscalc'}>
                     Try out the Credit Card Bonus Calculator
                 </button>
             </div>

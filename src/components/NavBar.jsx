@@ -39,7 +39,7 @@ export default function NavBar() {
 
             {/* Center - Always show title/logo */}
             <div className="navbar-center">
-                <Link to="/" className="btn btn-ghost normal-case text-2xl font-bold">Credit Card Rewards</Link>
+                <Link to="/" className="btn btn-ghost normal-case md:text-2xl text-xl font-bold">Credit Card Rewards</Link>
             </div>
 
             {/* End - Theme Toggle */}
