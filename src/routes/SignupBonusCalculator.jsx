@@ -13,6 +13,7 @@ function SignupBonusCalculatorContent() {
         monthlySpend,
         setMonthlySpend,
         timeToGoal,
+        setTimeToGoal,
         calculateTimeToGoal,
         resetContext,
         monthlyProgress,
@@ -67,14 +68,16 @@ function SignupBonusCalculatorContent() {
     const [localMonthlySpend, setLocalMonthlySpend] = useState(monthlySpend);
 
     // Debounced values
-    const debouncedSpendingTarget = useDebounce(localSpendingTarget, 500);
-    const debouncedMonthlySpend = useDebounce(localMonthlySpend, 500);
+    const debouncedSpendingTarget = useDebounce(localSpendingTarget, 300);
+    const debouncedMonthlySpend = useDebounce(localMonthlySpend, 300);
 
     // Trigger calculations after debounced values are ready
     useEffect(() => {
         if (debouncedSpendingTarget > 0 && debouncedMonthlySpend > 0) {
             setSpendingTarget(debouncedSpendingTarget);
             setMonthlySpend(debouncedMonthlySpend);
+        } else {
+            setTimeToGoal(undefined);
         }
     }, [debouncedSpendingTarget, debouncedMonthlySpend]);
 
@@ -154,11 +157,11 @@ function SignupBonusCalculatorContent() {
                 {/* Time to goal */}
                 <p className="text-sm font-semibold mt-6">
                     <span className="mr-4">Time to goal:</span>
-                    {spendingTarget > 0 && monthlySpend > 0 ? (
-                        <span className="font-bold text-3xl"> {timeToGoal} {timeToGoal < 2 ? 'month' : 'months'}
+                    {spendingTarget > 0 && monthlySpend > 0 && timeToGoal > 0 ? (
+                        <span className="font-bold text-xl"> {timeToGoal} {timeToGoal < 2 ? 'month' : 'months'}
                         </span>
                     ) : (
-                        <span className="font-bold text-xl">---</span>
+                        <span className="font-bold text-2xl">---</span>
                     )}
                 </p>
 

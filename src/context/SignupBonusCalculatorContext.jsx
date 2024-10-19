@@ -5,7 +5,7 @@ const SignupBonusCalculatorContext = createContext(null);
 function SignupBonusCalculatorProvider(props) {
     const [spendingTarget, setSpendingTarget] = useState("");
     const [monthlySpend, setMonthlySpend] = useState("");
-    const [timeToGoal, setTimeToGoal] = useState(0);
+    const [timeToGoal, setTimeToGoal] = useState(undefined);
     const [monthlyProgress, setMonthlyProgress] = useState([]);
     const [customCardName, setCustomCardName] = useState('');
 
@@ -53,6 +53,7 @@ function SignupBonusCalculatorProvider(props) {
         monthlySpend,
         setMonthlySpend: handleMonthlySpendChange,  // Use wrapper to log changes
         timeToGoal,
+        setTimeToGoal,
         calculateTimeToGoal,
         resetContext,
         monthlyProgress,
