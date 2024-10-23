@@ -35,8 +35,8 @@ export default function NavBar() {
                         tabIndex={0}
                         className="dropdown-content menu p-2 shadow bg-base-300 rounded-box w-52 mt-4"
                     >
-                        <li><Link to="/signupbonuscalc" onClick={closeDropdown}>Sign Up Bonus Calculator</Link></li>
-                        <li><Link to="/" onClick={closeDropdown}>About</Link></li>
+                        <li><Link to="/" onClick={closeDropdown}>Sign Up Bonus Calculator</Link></li>
+                        <li><Link to="/about" onClick={closeDropdown}>About</Link></li>
                     </ul>
                 </div>
             </div>

@@ -108,7 +108,7 @@ function SignupBonusCalculatorContent() {
     const getMonthLabel = (monthsFromNow) => {
         const today = new Date();
         today.setMonth(today.getMonth() + monthsFromNow);
-        const options = { month: 'short', year: 'numeric' };
+        const options = { month: 'long', year: 'numeric' };
         return today.toLocaleDateString('en-US', options);
     };
 
@@ -145,7 +145,7 @@ function SignupBonusCalculatorContent() {
                     />
                 </div>
 
-                {/* Time to goal */}
+                {/* Time to goal
                 <p className="text-sm font-semibold mt-6">
                     <span className="mr-4">Time to goal:</span>
                     {spendingTarget > 0 && monthlySpend > 0 && !isNaN(Number(timeToGoal)) && Number(timeToGoal) > 0 ? (
@@ -153,7 +153,7 @@ function SignupBonusCalculatorContent() {
                     ) : (
                         <span className="font-bold text-2xl">---</span>
                     )}
-                </p>
+                </p> */}
 
                 {/* Add card, Reset, and Dropdown buttons on the same row, properly contained within the card */}
                 <div className="flex justify-between items-stretch mt-4 space-x-2 w-full ">
@@ -193,7 +193,21 @@ function SignupBonusCalculatorContent() {
 
             {/* Heading for Visual Progress */}
             {spendingTarget > 0 && monthlySpend > 0 && timeToGoal > 0 && (
-                <>
+                <>  {/* Time to goal */}
+                    <div className="w-auto p-3 bg-base-300 rounded-lg shadow-md flex items-center">
+                        <p className="md:text-xl text-lg text font-semibold">
+                            Time to goal: 
+                            {spendingTarget > 0 && monthlySpend > 0 && !isNaN(Number(timeToGoal)) && Number(timeToGoal) > 0 ? (
+                                <span className="font-bold text-green ml-2">
+                                    {Number.isInteger(timeToGoal) ? timeToGoal : timeToGoal.toFixed(2)} {timeToGoal < 2 ? 'month' : 'months'}
+                                </span>
+                            ) : (
+                                <span className="font-bold ml-2">---</span>
+                            )}
+                        </p>
+                    </div>
+
+                   
                     <h2 className="md:text-xl text-lg font-bold">Visual Progress</h2>
                     {/* Display radial progress radials for each month */}
                     <div className="flex flex-wrap justify-center mt-8">
@@ -202,7 +216,7 @@ function SignupBonusCalculatorContent() {
                                 <RadialProgress
                                     key={index}
                                     value={progress.toFixed(2)}
-                                    label={getMonthLabel(index)}
+                                    label= {`By ${getMonthLabel(index)}`}
                                     isComplete={index === monthlyProgress.length - 1}
                                 />
                             </div>
