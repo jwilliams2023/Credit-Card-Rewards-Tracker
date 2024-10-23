@@ -9,14 +9,15 @@ const DropDownBox = ({ buttonLabel = "Dropdown", dropdownItems = [], onItemSelec
 
     const handleItemClick = (item) => {
         onItemSelect(item);
-        setIsDropdownOpen(false); // Close dropdown after selection
+        setIsDropdownOpen(false); // Close the dropdown after selection
     };
 
     return (
-        <div className="dropdown dropdown- relative">
+        <div className="dropdown dropdown-bottom flex-1">
+            {/* Summary/Button to open/close */}
             <button
                 onClick={toggleDropdown}
-                className="btn btn-primary m-1 flex items-center text-md md:text-lg"
+                className="btn btn-primary w-full text-md md:text-lg m-1 items-center"
             >
                 {buttonLabel}
                 {/* <svg
@@ -29,10 +30,11 @@ const DropDownBox = ({ buttonLabel = "Dropdown", dropdownItems = [], onItemSelec
                     <path d="M1799 349l242 241-1017 1017L7 590l242-241 775 775 775-775z"></path>
                 </svg> */}
             </button>
+
             {isDropdownOpen && (
                 <ul
                     tabIndex={0}
-                    className="dropdown-content menu bg-base-100 rounded-box shadow-md p-3 z-[1] w-auto mt-4 "
+                    className="dropdown-content menu bg-base-100 rounded-box shadow-md p-3 z-[1] w-52 mt-2"
                 >
                     {dropdownItems.length > 0 ? (
                         dropdownItems.map((item, index) => (
