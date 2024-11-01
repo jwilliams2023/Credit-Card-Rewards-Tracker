@@ -65,17 +65,19 @@ The application is deployed on Netlify. You can access it here:
 5. Add new cards to track multiple bonuses.
 6. Use the **Saved Cards** hover button to select previously saved credit card goals.
 
-## In Progress
+## Agile Workflow
+
+### In Progress
 
 - **Credit Score Calculation**: Adding a feature to allow users to calculate and track their credit score as part of their financial planning.
 - **UI/UX Improvements**: Enhancing the overall user interface to make navigation and user experience smoother and more intuitive.
 
-## Backlog
+### Backlog
 
 - **Alignment Fixes**: Addressing alignment issues between labels and input boxes to ensure consistent layout.
 - **Card Input Enhancements**: Improve how card names are handled when adding cards, including validation to prevent empty card names.
 
-## Future Features
+### Future Features
 
 - **Persistent Backend Database**: Implementing a persistent backend database using SQLite/MySQL to store and track active signup bonuses across multiple credit cards. This will allow users to keep track of their progress over time, rather than relying solely on local storage.
 - **User Authentication**: Adding user authentication through Google OAuth to enable secure access to user data and make card data more permanent.
