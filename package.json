@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.49.4",
     "autoprefixer": "^10.4.20",
     "better-sqlite3": "^11.5.0",
     "postcss": "^8.4.47",

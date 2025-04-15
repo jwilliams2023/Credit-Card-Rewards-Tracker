@@ -2,6 +2,7 @@ import React, { useContext  } from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import AboutRoute from './routes/About';
 import SignupBonusCalculatorRoute from './routes/SignupBonusCalculator';
+import Tracker from './routes/Tracker';
 import NavBar from './components/NavBar';
 import { ThemeContext } from './context/ThemeContext';
 import MainContent from './components/MainContent';
@@ -17,6 +18,7 @@ export default function App({}) {
         <Routes>
           <Route path="/about" element={<AboutRoute />} />
           <Route path="/" element={<SignupBonusCalculatorRoute />} />
+          <Route path="/tracker" element={<Tracker />} />
         </Routes>
         </MainContent>
       </Router>

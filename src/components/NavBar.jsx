@@ -34,16 +34,18 @@ export default function NavBar() {
                     <ul
                         tabIndex={0}
                         className="dropdown-content menu p-2 shadow bg-base-300 rounded-box w-52 mt-4"
-                    >
-                        <li><Link to="/" onClick={closeDropdown}>Sign Up Bonus Calculator</Link></li>
+                    >   
                         <li><Link to="/about" onClick={closeDropdown}>About</Link></li>
+                        <li><Link to="/tracker" onClick={closeDropdown}>Tracker</Link></li>
+                        <li><Link to="/" onClick={closeDropdown}>Sign Up Bonus Calculator</Link></li>
+
                     </ul>
                 </div>
             </div>
 
             {/* Center - Always show title/logo */}
             <div className="navbar-center">
-                <Link to="/" className="btn btn-ghost normal-case md:text-2xl text-xl font-bold">Credit Card Rewards</Link>
+                <Link to="/about" className="btn btn-ghost normal-case md:text-2xl text-xl font-bold">Credit Card Rewards</Link>
             </div>
 
             {/* End - Theme Toggle */}
