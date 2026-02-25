@@ -16,8 +16,8 @@ export default function App({}) {
         <NavBar />
         <MainContent>
         <Routes>
-          <Route path="/about" element={<AboutRoute />} />
-          <Route path="/" element={<SignupBonusCalculatorRoute />} />
+          <Route path="/" element={<AboutRoute />} />
+          <Route path="/calculator" element={<SignupBonusCalculatorRoute />} />
           <Route path="/tracker" element={<Tracker />} />
         </Routes>
         </MainContent>
