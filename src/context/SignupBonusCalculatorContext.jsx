@@ -19,40 +19,22 @@ function SignupBonusCalculatorProvider(props) {
     }
 
     function calculateTimeToGoal() {
-        // Convert empty strings to 0 for calculation purposes
         const target = parseFloat(spendingTarget) || 0;
         const monthly = parseFloat(monthlySpend) || 0;
 
-        // Log the values of spendingTarget and monthlySpend to debug the issue
-        console.log("spendingTarget:", spendingTarget);
-        console.log("monthlySpend:", monthlySpend);
-
         if (monthly > 0 && target > 0) {
-            // Log the result of the division before setting the state
-            console.log("Calculated timeToGoal:", target / monthly);
             const calculatedTime = target / monthly;
-            setTimeToGoal(calculatedTime);  // Ensure division is correct here 
+            setTimeToGoal(calculatedTime);
         } else {
             setTimeToGoal(undefined);
         }
     }
 
-    // Log when the spending target or monthly spend is updated
-    const handleSpendingTargetChange = (value) => {
-        console.log("Setting spendingTarget to:", value);
-        setSpendingTarget(value);
-    }
-
-    const handleMonthlySpendChange = (value) => {
-        console.log("Setting monthlySpend to:", value);
-        setMonthlySpend(value);
-    }
-
     const contextValues = {
         spendingTarget,
-        setSpendingTarget: handleSpendingTargetChange,  // Use wrapper to log changes
+        setSpendingTarget,
         monthlySpend,
-        setMonthlySpend: handleMonthlySpendChange,  // Use wrapper to log changes
+        setMonthlySpend,
         timeToGoal,
         setTimeToGoal,
         calculateTimeToGoal,

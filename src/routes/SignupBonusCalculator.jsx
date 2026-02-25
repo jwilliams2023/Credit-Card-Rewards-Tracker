@@ -64,6 +64,12 @@ function SignupBonusCalculatorContent() {
         calculateTimeToGoal();
     }
 
+    const handleDeleteCard = (index) => {
+        const updatedCards = cards.filter((_, i) => i !== index);
+        setCards(updatedCards);
+        localStorage.setItem('cards', JSON.stringify(updatedCards));
+    };
+
     // Local states for input to apply debouncing
     const [localSpendingTarget, setLocalSpendingTarget] = useState(spendingTarget);
     const [localMonthlySpend, setLocalMonthlySpend] = useState(monthlySpend);
@@ -267,13 +273,19 @@ function SignupBonusCalculatorContent() {
                                         <div className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>Monthly</div>
                                         <div>{formatCurrency(card.monthlySpend)}</div>
                                     </div>
-                                    <div className="p-4 col-span-2 flex items-center justify-end">
+                                    <div className="p-4 col-span-2 flex items-center justify-end gap-2">
                                         <button 
                                             onClick={() => handleCardSelect(card)} 
                                             className="py-2 px-4 bg-indigo-500 hover:bg-indigo-600 text-white rounded-lg"
                                             style={{ backgroundColor: '#6366F1' }}
                                         >
                                             Load
+                                        </button>
+                                        <button 
+                                            onClick={() => handleDeleteCard(index)} 
+                                            className="py-2 px-4 bg-red-500 hover:bg-red-600 text-white rounded-lg"
+                                        >
+                                            Delete
                                         </button>
                                     </div>
                                 </div>

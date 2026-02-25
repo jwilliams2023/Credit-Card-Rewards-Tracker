@@ -20,16 +20,28 @@ const Tracker = () => {
     notes: ''
   });
   const [editingId, setEditingId] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [notification, setNotification] = useState({ show: false, message: '', type: '' });
+
+  const showNotification = (message, type = 'success') => {
+    setNotification({ show: true, message, type });
+    setTimeout(() => setNotification({ show: false, message: '', type: '' }), 3000);
+  };
 
   useEffect(() => {
     const fetchCards = async () => {
+      setLoading(true);
       const { data, error } = await supabase
         .from('credit_cards')
         .select('*')
         .order('created_at', { ascending: false });
 
-      if (error) console.error('Fetch error:', error);
-      else setCards(data);
+      if (error) {
+        showNotification('Failed to load cards: ' + error.message, 'error');
+      } else {
+        setCards(data || []);
+      }
+      setLoading(false);
     };
 
     fetchCards();
@@ -41,8 +53,12 @@ const Tracker = () => {
   };
 
   const handleAddOrUpdateCard = async () => {
-    if (!newCard.card_name) return;
+    if (!newCard.card_name) {
+      showNotification('Card name is required', 'error');
+      return;
+    }
 
+    setLoading(true);
     const sanitizedCard = Object.fromEntries(
       Object.entries(newCard).map(([k, v]) => [k, v || null])
     );
@@ -53,11 +69,15 @@ const Tracker = () => {
         .update(sanitizedCard)
         .eq('id', editingId);
 
-      if (!error) {
+      if (error) {
+        showNotification('Failed to update card: ' + error.message, 'error');
+      } else {
         setCards((prev) =>
           prev.map((c) => (c.id === editingId ? { ...c, ...sanitizedCard } : c))
         );
         setEditingId(null);
+        showNotification('Card updated successfully!', 'success');
+        resetForm();
       }
     } else {
       const { data, error } = await supabase
@@ -65,12 +85,16 @@ const Tracker = () => {
         .insert([sanitizedCard])
         .select();
 
-      if (!error && data.length > 0) {
+      if (error) {
+        showNotification('Failed to add card: ' + error.message, 'error');
+      } else if (data && data.length > 0) {
         setCards((prev) => [data[0], ...prev]);
+        showNotification('Card added successfully!', 'success');
+        resetForm();
       }
     }
 
-    resetForm();
+    setLoading(false);
   };
 
   const resetForm = () => {
@@ -95,8 +119,18 @@ const Tracker = () => {
   };
 
   const handleDeleteCard = async (id) => {
+    if (!confirm('Are you sure you want to delete this card?')) return;
+    
+    setLoading(true);
     const { error } = await supabase.from('credit_cards').delete().eq('id', id);
-    if (!error) setCards((prev) => prev.filter((c) => c.id !== id));
+    
+    if (error) {
+      showNotification('Failed to delete card: ' + error.message, 'error');
+    } else {
+      setCards((prev) => prev.filter((c) => c.id !== id));
+      showNotification('Card deleted successfully!', 'success');
+    }
+    setLoading(false);
   };
 
   const exportToCSV = () => {
@@ -150,6 +184,15 @@ const Tracker = () => {
 
   return (
     <div className={`min-h-screen p-6 ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-gray-100 text-gray-800'}`}>
+      {/* Notification Toast */}
+      {notification.show && (
+        <div className="toast toast-top toast-center z-50">
+          <div className={`alert ${notification.type === 'success' ? 'alert-success' : 'alert-error'}`}>
+            <span>{notification.message}</span>
+          </div>
+        </div>
+      )}
+
       <h1 className="text-2xl font-bold mb-6 text-center">Credit Card Tracker</h1>
 
       <div className={`p-6 rounded-lg shadow-lg ${isDarkMode ? 'bg-gray-800 bg-opacity-60' : 'bg-white'}`}>
@@ -215,12 +258,14 @@ const Tracker = () => {
           <button 
             className="btn btn-primary flex-1 text-md md:text-lg px-3" 
             onClick={handleAddOrUpdateCard}
+            disabled={loading}
           >
-            {editingId ? 'Update Card' : 'Add Card'}
+            {loading ? <span className="loading loading-spinner"></span> : (editingId ? 'Update Card' : 'Add Card')}
           </button>
           <button
             className="btn btn-primary flex-1 text-md md:text-lg"
             onClick={resetForm}
+            disabled={loading}
           >
             Reset
           </button>
